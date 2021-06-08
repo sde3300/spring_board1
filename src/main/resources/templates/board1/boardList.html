@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<h2>게시판 목록</h2>
+		<table border="1">
+			<colgroup>
+				<col whidth="15%">
+				<col whidth="*">
+				<col whidth="15%">
+				<col whidth="20%">
+			</colgroup>
+			<thread>
+				<tr>
+					<th scope="col">글번호</th>
+					<th scope="col">제목</th>
+					<th scope="col">조회수</th>
+					<th scope="col">작성일</th>
+				</tr>
+			</thread>
+			<tbody>
+				<tr th:if="${#lists.size(dataList)} > 0" th:each="list: ${datalist}">
+					<td th:text="${list.boardIdx}"></td>
+					<td th:text="${list.title}"></td>
+					<td th:text="${list.hitCnt}"></td>
+					<td th:text="${list.createdDate}"></td>
+				</tr>
+				<tr th:unless="${#lists.size(dataList)} > 0">
+					<td colspan="4">조회된 결과가 없습니다.</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="/board1/openBoardWrite.do">글 쓰기</a>
+	</div>
+</body>
+</html>
